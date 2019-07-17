@@ -11,8 +11,8 @@ function Stage({ stage }) {
 export function Pipeline({ stages, setStages }) {
   return (
     <div className="pipeline">
-      {stages.map(stage => (
-        <Stage stage={stage} />
+      {stages.map((stage, index) => (
+        <Stage key={index} stage={stage} />
       ))}
     </div>
   );

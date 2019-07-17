@@ -18,24 +18,26 @@ export function Game({ level }) {
   const { input, expectedOutput } = level;
   const result = runPipeline({ input, stages });
   const resultEqualsExpected = deepEqual(result, expectedOutput);
+  console.log("Result:", result);
+  console.log("Expected:", expectedOutput);
+  console.log("resultEqualsExpected:", resultEqualsExpected);
   const dialog = useDialogState();
   return (
     <>
       <InputCollections input={input} />
       <PipelineControls
         onAddClicked={() => {
-          stages.push({});
-          setStages(stages);
+          setStages([...stages, {}]);
         }}
       />
-      <Pipeline input={input} stages={[]} setStages={setStages} />
+      <Pipeline input={input} stages={stages} setStages={setStages} />
       <Result input={result} expected={expectedOutput} />
       <>
-        <DialogDisclosure {...dialog}>Open dialog</DialogDisclosure>
+        <DialogDisclosure disabled={!resultEqualsExpected} {...dialog}>
+          Submit
+        </DialogDisclosure>
         <DialogBackdrop {...dialog} />
-        <Dialog disabled={!resultEqualsExpected} {...dialog}>
-          Success!
-        </Dialog>
+        <Dialog {...dialog}>Success!</Dialog>
       </>
     </>
   );

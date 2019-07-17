@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.css";
 import { Game } from "./Game";
+import { Provider } from "reakit";
+import * as system from "reakit-system-bootstrap";
 
 const EXAMPLE_LEVEL = {
   name: "Example Level",
@@ -28,7 +30,9 @@ const EXAMPLE_LEVEL = {
 function App() {
   return (
     <div className="App">
-      <Game level={EXAMPLE_LEVEL} />
+      <Provider unstable_system={system}>
+        <Game level={EXAMPLE_LEVEL} />
+      </Provider>
     </div>
   );
 }
