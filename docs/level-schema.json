@@ -1,0 +1,22 @@
+{
+   "name": "Example Level",
+   "input": [
+      {
+         "shape": "square",
+         "color": "blue"
+      },
+      {
+         "shape": "triangle",
+         "color": "green"
+      }
+   ],
+   "tools": {
+      "$match": 1
+   },
+   "expectedOutput": [
+      {
+         "shape": "triangle",
+         "color": "green"
+      }
+   ]
+}
