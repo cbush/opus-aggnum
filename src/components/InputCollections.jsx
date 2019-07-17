@@ -4,7 +4,7 @@ import { Collection } from "./Collection";
 export function InputCollections({ input }) {
   return (
     <div className="inputCollections">
-      <Collection documents={input} />
+      <Collection name="Input" documents={input} />
     </div>
   );
 }

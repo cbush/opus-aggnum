@@ -11,7 +11,7 @@ import { InputCollections } from "./InputCollections";
 import { PipelineControls } from "./PipelineControls";
 import { Pipeline } from "./Pipeline";
 import { Result } from "./Result";
-import { runPipeline } from "./runPipeline";
+import { runPipeline } from "../runPipeline";
 
 export function Game({ level }) {
   const [stages, setStages] = useState([]);
@@ -27,7 +27,13 @@ export function Game({ level }) {
       <InputCollections input={input} />
       <PipelineControls
         onAddClicked={() => {
-          setStages([...stages, {}]);
+          setStages([
+            ...stages,
+            {
+              operator: "$match",
+              argument: { shape: "triangle" }
+            }
+          ]);
         }}
       />
       <Pipeline input={input} stages={stages} setStages={setStages} />

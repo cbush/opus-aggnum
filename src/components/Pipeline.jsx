@@ -1,9 +1,12 @@
 import React from "react";
 
-function Stage({ stage }) {
+function Stage({ operator, argument }) {
   return (
     <div className="stage">
-      <p>I am a stage</p>
+      <p>
+        <span className="operator">{operator}</span>:
+        <span className="argument">{JSON.stringify(argument)}</span>
+      </p>
     </div>
   );
 }
@@ -12,7 +15,7 @@ export function Pipeline({ stages, setStages }) {
   return (
     <div className="pipeline">
       {stages.map((stage, index) => (
-        <Stage key={index} stage={stage} />
+        <Stage key={index} {...stage} />
       ))}
     </div>
   );
