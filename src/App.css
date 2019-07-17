@@ -4,10 +4,6 @@
   padding: 20px;
 }
 
-.section {
-  margin-bottom: 20px;
-}
-
 .collection {
   display: flex;
   flex: 1;
@@ -25,10 +21,11 @@
 
 .document {
   flex-basis: 200px;
-  margin: 10px;
+  margin: 0px 10px 10px 0px;
   padding: 10px;
   border: 1px solid black;
   box-shadow: 5px 5px #888;
+  background: rgba(255, 255, 255, 0.8)
 }
 
 .result {
@@ -42,5 +39,45 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 10px 0px;
+}
+
+.flowing {
+  background-size: 200% 200%;
+}
+
+.broken {
+  background: #fcc;
+}
+
+.working {
+  background: #0f0;
+}
+
+.starving {
+  background: #888;
+}
+
+@keyframes flowing {
+  100% {
+    background-position: 0% -100%;
+  }
+}
+
+.arrowDown {
+  width: 0; 
+  height: 0; 
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-top: 60px solid #aaa;
+  margin-bottom: 20px;
+}
+
+form {
+  flex: 1;
+}
+
+.deleter {
+  flex-basis: 1px;
+  margin-left: 10px;
+  height: 40px;
 }

@@ -16,30 +16,35 @@ import { runPipeline } from "../runPipeline";
 export function Game({ level }) {
   const [stages, setStages] = useState([]);
   const { input, expectedOutput } = level;
-  const result = runPipeline({ input, stages });
-  const resultEqualsExpected = deepEqual(result, expectedOutput);
+  let resultEqualsExpected = false;
+  let result = [];
+  try {
+    result = runPipeline({ input, stages });
+    resultEqualsExpected = deepEqual(result, expectedOutput);
+  } catch (error) {
+    // do nothing
+  }
   const dialog = useDialogState();
   return (
     <>
       <div className="section">
         <InputCollections input={input} />
       </div>
+      <div className="arrowDown" />
       <div className="section">
         <PipelineControls
           onAddClicked={() => {
-            setStages([
-              ...stages,
-              {
-                operator: "$match",
-                argument: { shape: "triangle" }
-              }
-            ]);
+            setStages([...stages, {}]);
           }}
         />
         <Pipeline input={input} stages={stages} setStages={setStages} />
       </div>
       <div className="section">
-        <Result input={result} expected={expectedOutput} />
+        <Result
+          resultEqualsExpected={resultEqualsExpected}
+          input={result}
+          expected={expectedOutput}
+        />
         <>
           <DialogDisclosure disabled={!resultEqualsExpected} {...dialog}>
             Submit
