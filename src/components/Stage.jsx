@@ -1,6 +1,5 @@
 import React from "react";
-import { Button } from "reakit";
-import { withFlow } from "./withFlow";
+import JSON5 from "json5";
 import {
   unstable_useFormState as useFormState,
   unstable_Form as Form,
@@ -9,6 +8,8 @@ import {
   unstable_FormMessage as FormMessage,
   unstable_FormSubmitButton as FormSubmitButton
 } from "reakit";
+import { Button } from "reakit";
+import { withFlow } from "./withFlow";
 import { runPipeline } from "../runPipeline";
 
 const validate = (values, input) => {
@@ -22,9 +23,10 @@ const validate = (values, input) => {
     errors.argument = "Argument required";
   } else {
     try {
-      stage.argument = JSON.parse(argument);
+      stage.argument = JSON5.parse(argument);
     } catch (error) {
       errors.argument = error.message;
+      stage.argument = {};
     }
   }
 
@@ -53,7 +55,7 @@ const validate = (values, input) => {
 export const Stage = withFlow(
   ({ operator, argument, className, onRequestDelete, input, setStage }) => {
     const form = useFormState({
-      values: { operator, argument: JSON.stringify(argument) },
+      values: { operator, argument: JSON5.stringify(argument) },
       onValidate: values => {
         setStage({});
         const result = validate(values, input);

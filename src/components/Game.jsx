@@ -47,7 +47,9 @@ export function Game({ level }) {
         />
         <>
           <DialogDisclosure disabled={!resultEqualsExpected} {...dialog}>
-            Submit
+            {resultEqualsExpected
+              ? "Result === expected"
+              : "Result does not match expected"}
           </DialogDisclosure>
           <DialogBackdrop {...dialog} />
           <Dialog {...dialog}>Success!</Dialog>
