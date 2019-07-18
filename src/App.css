@@ -102,3 +102,24 @@ form {
 .null {
   color:#666
 }
+
+.viewport {
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbox {
+  z-index: 10;
+  background: white;
+  box-shadow: 0px 0px 10px black;
+  padding: 20px;
+  position: fixed;
+  left:0;
+  bottom:0;
+  right:0;
+  display: flex;
+  border: 1px solid black;
+  flex-direction: column;
+}
+
