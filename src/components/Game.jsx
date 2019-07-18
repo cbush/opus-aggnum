@@ -6,6 +6,7 @@ import {
   DialogBackdrop
 } from "reakit";
 import deepEqual from "deep-equal";
+import uuidv1 from "uuid/v1";
 
 import { InputCollections } from "./InputCollections";
 import { Pipeline } from "./Pipeline";
@@ -15,7 +16,22 @@ import { Toolbox } from "./Toolbox";
 
 export function Game({ level }) {
   const [stages, setStages] = useState([]);
-  const { input, expectedOutput, tools } = level;
+  const { input, expectedOutput } = level;
+  const [tools, setTools] = useState(
+    (function() {
+      const tools = [];
+      Object.keys(level.tools).forEach(name => {
+        for (let i = 0; i < level.tools[name]; ++i) {
+          tools.push({
+            id: uuidv1(),
+            name,
+            type: "stage"
+          });
+        }
+      });
+      return tools;
+    })()
+  );
   let resultEqualsExpected = false;
   let result = [];
   try {
@@ -33,7 +49,14 @@ export function Game({ level }) {
         </div>
         <div className="arrowDown" />
         <div className="section">
-          <Pipeline input={input} stages={stages} setStages={setStages} />
+          <Pipeline
+            input={input}
+            stages={stages}
+            setStages={setStages}
+            releaseTool={({ id, name, type }) => {
+              setTools([...tools, { id, name, type }]);
+            }}
+          />
         </div>
         <div className="section">
           <Result
@@ -52,7 +75,7 @@ export function Game({ level }) {
           </>
         </div>
       </div>
-      <Toolbox toolsSpec={tools} />
+      <Toolbox tools={tools} setTools={setTools} />
     </>
   );
 }

@@ -18,7 +18,8 @@ const EXAMPLE_LEVEL = {
     }
   ],
   tools: {
-    $match: 1
+    $match: 3,
+    $group: 1
   },
   expectedOutput: [
     {

@@ -1,24 +1,21 @@
 import React from "react";
-import uuidv1 from "uuid/v1";
 import { Tool } from "./Tool";
 
-export function Toolbox({ toolsSpec }) {
-  const tools = [];
-  Object.keys(toolsSpec).forEach(name => {
-    for (let i = 0; i < toolsSpec[name]; ++i) {
-      tools.push({
-        id: uuidv1(),
-        name,
-        type: "stage"
-      });
-    }
-  });
+export function Toolbox({ tools, setTools }) {
   return (
     <div className="toolbox">
       <label>TOOLBOX</label>
       <div className="tray">
-        {tools.map(tool => (
-          <Tool {...tool} />
+        {tools.map((tool, index) => (
+          <Tool
+            key={tool.id}
+            {...tool}
+            onDropped={() => {
+              const newTools = [...tools];
+              newTools.splice(index, 1);
+              setTools(newTools);
+            }}
+          />
         ))}
       </div>
     </div>

@@ -125,7 +125,7 @@ form {
 }
 
 .toolbox .tray {
-  flex-direction: row;
+  flex-direction: column;
   display: flex;
 }
 

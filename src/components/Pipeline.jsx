@@ -4,7 +4,7 @@ import { runPipeline } from "../runPipeline";
 import { Result } from "./Result";
 import { StageDropzone } from "./StageDropzone";
 
-export function Pipeline({ input, stages, setStages }) {
+export function Pipeline({ input, stages, setStages, releaseTool }) {
   const results = [];
   const inputs = [];
 
@@ -32,6 +32,11 @@ export function Pipeline({ input, stages, setStages }) {
                 const newStages = [...stages];
                 newStages.splice(index, 1);
                 setStages(newStages);
+                releaseTool({
+                  id: stage.id,
+                  name: stage.operator,
+                  type: "stage"
+                });
               }}
               setStage={stage => {
                 const newStages = [...stages];
@@ -52,7 +57,7 @@ export function Pipeline({ input, stages, setStages }) {
         );
       })}
       <StageDropzone
-        onDrop={({ id, name }) => {
+        onDrop={({ id, name, onRemovedFromPipeline }) => {
           const newStages = [
             ...stages,
             {

@@ -13,9 +13,9 @@ import { runPipeline } from "../runPipeline";
 import { parseArgument } from "../parseArgument";
 import { useLiveRef } from "../useLiveRef";
 
-const validate = (values, input) => {
+const validate = (values, input, operator) => {
   const errors = {};
-  const { operator, argument } = values;
+  const { argument } = values;
   const stage = {
     operator,
     argument
@@ -63,9 +63,9 @@ export const Stage = withFlow(props => {
   const form = useFormState({
     values: { operator, argument },
     onValidate: values => {
-      const { setStage, input, id } = propsRef.current;
-      setStage({ id });
-      const result = validate(values, input);
+      const { setStage, input, operator, id } = propsRef.current;
+      setStage({ id, operator });
+      const result = validate(values, input, operator);
       setStage({ ...result, id });
     }
   });
@@ -73,12 +73,8 @@ export const Stage = withFlow(props => {
   return (
     <div className={`stage ${className}`}>
       <div className="column">
+        <h2>{operator}</h2>
         <Form {...form}>
-          <FormMessage {...form} name="main" />
-          <FormLabel {...form} name="operator">
-            Operator
-          </FormLabel>
-          <FormInput {...form} name="operator" placeholder="Operator" />
           <FormMessage {...form} name="operator" />
           <FormLabel {...form} name="argument">
             Argument

@@ -1,7 +1,10 @@
 import React from "react";
 import { useDrag } from "react-dnd";
+import { useLiveRef } from "../useLiveRef";
 
-export function Tool({ id, name, type }) {
+export function Tool(props) {
+  const { id, name, type } = props;
+  const propsRef = useLiveRef(props);
   const [{ opacity }, dragRef] = useDrag({
     item: { id, name, type },
     collect: monitor => ({
@@ -12,8 +15,9 @@ export function Tool({ id, name, type }) {
         return;
       }
       const result = monitor.getDropResult();
-      console.log("Dropped item:", item);
       result.onDrop(item);
+      const { onDropped } = propsRef.current;
+      onDropped();
     }
   });
   return (
