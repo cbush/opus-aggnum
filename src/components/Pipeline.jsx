@@ -1,4 +1,5 @@
 import React from "react";
+import { Flipped } from "react-flip-toolkit";
 import { Stage } from "./Stage";
 import { runPipeline } from "../runPipeline";
 import { Result } from "./Result";
@@ -26,6 +27,7 @@ export function Pipeline({ input, stages, setStages, releaseTool }) {
         return (
           <React.Fragment key={stage.id}>
             <Stage
+              id={stage.id}
               input={inputs[index]}
               onRequestDelete={() => {
                 const newStages = [...stages];
@@ -52,7 +54,13 @@ export function Pipeline({ input, stages, setStages, releaseTool }) {
               {...stage}
             />
             {stageResults && index !== stages.length - 1 ? (
-              <Result input={stageResults} />
+              <>
+                <div className="arrowDown" />
+                <Result
+                  name="Output from Previous Stage"
+                  input={stageResults}
+                />
+              </>
             ) : null}
             <div className="arrowDown" />
           </React.Fragment>

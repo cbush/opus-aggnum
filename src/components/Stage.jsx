@@ -8,6 +8,7 @@ import {
   unstable_FormSubmitButton as FormSubmitButton
 } from "reakit";
 import { Button } from "reakit";
+import { Flipped } from "react-flip-toolkit";
 import { withFlow } from "./withFlow";
 import { runPipeline } from "../runPipeline";
 import { parseArgument } from "../parseArgument";
@@ -58,7 +59,7 @@ const validate = (values, input, operator) => {
 };
 
 export const Stage = withFlow(props => {
-  const { operator, argument, className, onRequestDelete } = props;
+  const { operator, argument, className, onRequestDelete, id } = props;
   const propsRef = useLiveRef(props);
   const form = useFormState({
     values: { operator, argument },
@@ -71,26 +72,28 @@ export const Stage = withFlow(props => {
   });
 
   return (
-    <div className={`stage ${className}`}>
-      <div className="column">
-        <h2>{operator}</h2>
-        <Form {...form}>
-          <FormMessage {...form} name="operator" />
-          <FormLabel {...form} name="argument">
-            Argument JSON
-          </FormLabel>
-          <FormInput
-            {...form}
-            name="argument"
-            placeholder={`{shape: "triangle"}`}
-          />
-          <FormMessage {...form} name="argument" />
-          <FormSubmitButton {...form}>Update</FormSubmitButton>
-        </Form>
+    <Flipped flipId={id}>
+      <div className={`stage ${className}`}>
+        <div className="column">
+          <h2>{operator}</h2>
+          <Form {...form}>
+            <FormMessage {...form} name="operator" />
+            <FormLabel {...form} name="argument">
+              Argument JSON
+            </FormLabel>
+            <FormInput
+              {...form}
+              name="argument"
+              placeholder={`{shape: "triangle"}`}
+            />
+            <FormMessage {...form} name="argument" />
+            <FormSubmitButton {...form}>Update</FormSubmitButton>
+          </Form>
+        </div>
+        <Button className="deleter" onClick={onRequestDelete}>
+          x
+        </Button>
       </div>
-      <Button className="deleter" onClick={onRequestDelete}>
-        x
-      </Button>
-    </div>
+    </Flipped>
   );
 });

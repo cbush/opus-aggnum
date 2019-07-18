@@ -10,6 +10,7 @@
     "react-dnd": "^9.3.2",
     "react-dnd-html5-backend": "^9.3.2",
     "react-dom": "^16.8.6",
+    "react-flip-toolkit": "^6.6.9",
     "react-scripts": "3.0.1",
     "reakit": "^1.0.0-beta.4",
     "reakit-system-bootstrap": "^0.6.2",

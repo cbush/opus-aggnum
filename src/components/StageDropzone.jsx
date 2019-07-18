@@ -4,7 +4,7 @@ import { useLiveRef } from "../useLiveRef";
 
 export function StageDropzone(props) {
   const propsRef = useLiveRef(props);
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [{ canDrop, isOver, didDrop }, drop] = useDrop({
     accept: "stage",
     drop: () => {
       const { onDrop } = propsRef.current;
@@ -12,7 +12,8 @@ export function StageDropzone(props) {
     },
     collect: monitor => ({
       isOver: monitor.isOver(),
-      canDrop: monitor.canDrop()
+      canDrop: monitor.canDrop(),
+      didDrop: monitor.didDrop()
     })
   });
   const isActive = canDrop && isOver;
@@ -27,6 +28,10 @@ export function StageDropzone(props) {
       {canDrop ? (
         <div ref={drop} className={`${className.join(" ")}`}>
           {isActive ? "Release to drop" : "Drag a stage here"}
+        </div>
+      ) : didDrop ? (
+        <div className={"dropzone"}>
+          <br />
         </div>
       ) : null}
     </>

@@ -20,6 +20,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 600px;
   background: 'red';
   padding: 20px;
   border: 1px solid black;
@@ -32,7 +33,7 @@
 }
 
 .document {
-  flex-basis: 200px;
+  flex-basis: 100px;
   display: flex;
   flex-direction: column;
   margin: 0px 10px 10px 0px;
@@ -42,7 +43,17 @@
   background:#eee;
 }
 
-.document > label {
+.document p {
+  margin: 0px;
+}
+.warning {
+  padding: 10px 20px;
+  background: yellow;
+  border: 1px solid black;
+}
+
+.document > label, .collection > label {
+  text-transform: uppercase;
   color: #666;
   font-family: Courier, Monaco, monospace;
   flex: 1;
@@ -55,6 +66,7 @@
 }
 
 .stage {
+  min-width: 600px;
   border: 1px solid black;
   padding: 10px;
   display: flex;
@@ -175,5 +187,4 @@ h1 {
 .dropzone.active {
   background: #ddd;
   margin: 20px 0px;
-  height: 120px;
 }
