@@ -3,16 +3,8 @@ import "../App.css";
 import { Game } from "./Game";
 import { Provider } from "reakit";
 import * as system from "reakit-system-bootstrap";
-import {
-  unstable_useFormState as useFormState,
-  unstable_Form as Form,
-  unstable_FormLabel as FormLabel,
-  unstable_FormInput as FormInput,
-  unstable_FormMessage as FormMessage,
-  unstable_FormSubmitButton as FormSubmitButton,
-  Button
-} from "reakit";
-import { useState } from "react";
+import HTML5Backend from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 const EXAMPLE_LEVEL = {
   name: "Example Level",
   input: [
@@ -40,7 +32,9 @@ function App() {
   return (
     <div className="App">
       <Provider unstable_system={system}>
-        <Game level={EXAMPLE_LEVEL} />
+        <DndProvider backend={HTML5Backend}>
+          <Game level={EXAMPLE_LEVEL} />
+        </DndProvider>
       </Provider>
     </div>
   );

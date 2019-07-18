@@ -17,7 +17,7 @@ import { Toolbox } from "./Toolbox";
 
 export function Game({ level }) {
   const [stages, setStages] = useState([]);
-  const { input, expectedOutput } = level;
+  const { input, expectedOutput, tools } = level;
   let resultEqualsExpected = false;
   let result = [];
   try {
@@ -59,7 +59,7 @@ export function Game({ level }) {
           </>
         </div>
       </div>
-      <Toolbox />
+      <Toolbox toolsSpec={tools} />
     </>
   );
 }
