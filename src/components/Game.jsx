@@ -6,6 +6,7 @@ import {
   DialogBackdrop
 } from "reakit";
 import deepEqual from "deep-equal";
+import uuidv1 from "uuid/v1";
 
 import { InputCollections } from "./InputCollections";
 import { PipelineControls } from "./PipelineControls";
@@ -32,12 +33,12 @@ export function Game({ level }) {
       </div>
       <div className="arrowDown" />
       <div className="section">
+        <Pipeline input={input} stages={stages} setStages={setStages} />
         <PipelineControls
           onAddClicked={() => {
-            setStages([...stages, {}]);
+            setStages([...stages, { id: uuidv1() }]);
           }}
         />
-        <Pipeline input={input} stages={stages} setStages={setStages} />
       </div>
       <div className="section">
         <Result

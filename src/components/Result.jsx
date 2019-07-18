@@ -1,20 +1,15 @@
 import React from "react";
 import { Collection } from "./Collection";
-export function Result({ resultEqualsExpected, input, expected }) {
+import { Document } from "./Document";
+export function Result({ input, expected }) {
   return (
     <div className="result">
-      <Collection
-        flowStatus={
-          input.length === 0
-            ? "starving"
-            : resultEqualsExpected
-            ? "working"
-            : "broken"
-        }
-        name={"Result"}
-        documents={input}
-      />
-      <Collection name={"Expected"} documents={expected} />
+      {Array.isArray(input) ? (
+        <Collection documents={input} />
+      ) : (
+        <Document document={input} />
+      )}
+      {expected ? <Collection name={"Expected"} documents={expected} /> : null}
     </div>
   );
 }

@@ -7,7 +7,7 @@ export function Pipeline({ input, stages, setStages }) {
 
   try {
     let nextInput = input;
-    stages.map(stage => {
+    stages.forEach(stage => {
       inputs.push(nextInput);
       nextInput = runPipeline({ input: nextInput, stages: [stage] });
       results.push(nextInput);
@@ -22,7 +22,7 @@ export function Pipeline({ input, stages, setStages }) {
         const result = results[index];
         return (
           <Stage
-            key={index}
+            key={stage.id}
             input={inputs[index]}
             results={result}
             onRequestDelete={() => {
@@ -35,7 +35,9 @@ export function Pipeline({ input, stages, setStages }) {
               newStages[index] = stage;
               setStages(newStages);
             }}
-            flowStatus={result ? "working" : "broken"}
+            flowStatus={
+              inputs[index] == null ? "starving" : result ? "working" : "broken"
+            }
             {...stage}
           />
         );

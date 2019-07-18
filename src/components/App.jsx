@@ -3,7 +3,16 @@ import "../App.css";
 import { Game } from "./Game";
 import { Provider } from "reakit";
 import * as system from "reakit-system-bootstrap";
-
+import {
+  unstable_useFormState as useFormState,
+  unstable_Form as Form,
+  unstable_FormLabel as FormLabel,
+  unstable_FormInput as FormInput,
+  unstable_FormMessage as FormMessage,
+  unstable_FormSubmitButton as FormSubmitButton,
+  Button
+} from "reakit";
+import { useState } from "react";
 const EXAMPLE_LEVEL = {
   name: "Example Level",
   input: [

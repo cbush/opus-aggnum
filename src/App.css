@@ -4,6 +4,16 @@
   padding: 20px;
 }
 
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.pipelineControls {
+  margin-bottom: 20px;
+}
+
 .collection {
   display: flex;
   flex: 1;
@@ -31,6 +41,7 @@
 .result {
   display: flex;
   flex-direction: row;
+  margin-bottom: 20px;
 }
 
 .stage {
@@ -43,6 +54,7 @@
 
 .flowing {
   background-size: 200% 200%;
+  animation: flowing 5s linear infinite;
 }
 
 .broken {
@@ -50,7 +62,12 @@
 }
 
 .working {
-  background: #0f0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg, 
+      #afa,
+      transparent 25%
+    );
 }
 
 .starving {
@@ -80,4 +97,8 @@ form {
   flex-basis: 1px;
   margin-left: 10px;
   height: 40px;
+}
+
+.null {
+  color:#666
 }

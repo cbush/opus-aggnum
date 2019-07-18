@@ -1,13 +1,13 @@
 import mingo from "mingo";
+import { parseArgument } from "./parseArgument";
 
 export function runPipeline({ input, stages }) {
   if (stages.length === 0) {
     return [];
   }
-  const pipeline = stages.map(stage => {
+  const pipeline = stages.map(({ operator, argument }) => {
     const result = {};
-    const { operator, argument } = stage;
-    result[operator] = argument;
+    result[operator] = parseArgument(argument);
     return result;
   });
   const agg = new mingo.Aggregator(pipeline);

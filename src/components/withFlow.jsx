@@ -1,7 +1,7 @@
 import React from "react";
 export function withFlow(Component) {
   return props => {
-    const { flowStatus } = props;
+    let { flowStatus } = props;
     const className = (props.className || "").split(" ");
     switch (flowStatus) {
       case "working":
