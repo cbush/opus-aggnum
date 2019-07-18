@@ -1,6 +1,9 @@
 import React from "react";
 import { Stage } from "./Stage";
 import { runPipeline } from "../runPipeline";
+import { Result } from "./Result";
+import { StageDropzone } from "./StageDropzone";
+
 export function Pipeline({ input, stages, setStages }) {
   const results = [];
   const inputs = [];
@@ -19,29 +22,47 @@ export function Pipeline({ input, stages, setStages }) {
   return (
     <div className="pipeline">
       {stages.map((stage, index) => {
-        const result = results[index];
+        const stageResults = results[index];
         return (
-          <Stage
-            key={stage.id}
-            input={inputs[index]}
-            results={result}
-            onRequestDelete={() => {
-              const newStages = [...stages];
-              newStages.splice(index, 1);
-              setStages(newStages);
-            }}
-            setStage={stage => {
-              const newStages = [...stages];
-              newStages[index] = stage;
-              setStages(newStages);
-            }}
-            flowStatus={
-              inputs[index] == null ? "starving" : result ? "working" : "broken"
-            }
-            {...stage}
-          />
+          <>
+            <Stage
+              key={stage.id}
+              input={inputs[index]}
+              onRequestDelete={() => {
+                const newStages = [...stages];
+                newStages.splice(index, 1);
+                setStages(newStages);
+              }}
+              setStage={stage => {
+                const newStages = [...stages];
+                newStages[index] = stage;
+                setStages(newStages);
+              }}
+              flowStatus={
+                inputs[index] == null
+                  ? "starving"
+                  : stageResults
+                  ? "working"
+                  : "broken"
+              }
+              {...stage}
+            />
+            {stageResults ? <Result input={stageResults} /> : null}
+          </>
         );
       })}
+      <StageDropzone
+        onDrop={({ id, name }) => {
+          const newStages = [
+            ...stages,
+            {
+              id,
+              operator: name
+            }
+          ];
+          setStages(newStages);
+        }}
+      />
     </div>
   );
 }

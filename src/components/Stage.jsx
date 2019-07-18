@@ -10,17 +10,8 @@ import {
 import { Button } from "reakit";
 import { withFlow } from "./withFlow";
 import { runPipeline } from "../runPipeline";
-import { Result } from "./Result";
 import { parseArgument } from "../parseArgument";
-
-// Workaround for https://github.com/reakit/reakit/issues/400
-function useLiveRef(value) {
-  const ref = React.useRef(value);
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref;
-}
+import { useLiveRef } from "../useLiveRef";
 
 const validate = (values, input) => {
   const errors = {};
@@ -67,7 +58,7 @@ const validate = (values, input) => {
 };
 
 export const Stage = withFlow(props => {
-  const { operator, argument, className, onRequestDelete, results } = props;
+  const { operator, argument, className, onRequestDelete } = props;
   const propsRef = useLiveRef(props);
   const form = useFormState({
     values: { operator, argument },
@@ -80,30 +71,26 @@ export const Stage = withFlow(props => {
   });
 
   return (
-    <>
-      <div className={`stage ${className}`}>
-        <div className="column">
-          <Form {...form}>
-            <FormMessage {...form} name="main" />
-            <FormLabel {...form} name="operator">
-              Operator
-            </FormLabel>
-            <FormInput {...form} name="operator" placeholder="Operator" />
-            <FormMessage {...form} name="operator" />
-            <FormLabel {...form} name="argument">
-              Argument
-            </FormLabel>
-            <FormInput {...form} name="argument" placeholder="Argument" />
-            <FormMessage {...form} name="argument" />
-            <FormSubmitButton {...form}>></FormSubmitButton>
-          </Form>
-          {results ? <Result input={results} /> : null}
-        </div>
-        <Button className="deleter" onClick={onRequestDelete}>
-          x
-        </Button>
+    <div className={`stage ${className}`}>
+      <div className="column">
+        <Form {...form}>
+          <FormMessage {...form} name="main" />
+          <FormLabel {...form} name="operator">
+            Operator
+          </FormLabel>
+          <FormInput {...form} name="operator" placeholder="Operator" />
+          <FormMessage {...form} name="operator" />
+          <FormLabel {...form} name="argument">
+            Argument
+          </FormLabel>
+          <FormInput {...form} name="argument" placeholder="Argument" />
+          <FormMessage {...form} name="argument" />
+          <FormSubmitButton {...form}>></FormSubmitButton>
+        </Form>
       </div>
-      <div className="arrowDown" />
-    </>
+      <Button className="deleter" onClick={onRequestDelete}>
+        x
+      </Button>
+    </div>
   );
 });

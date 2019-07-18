@@ -137,3 +137,20 @@ form {
   border-radius: 5px;
 }
 
+.dropzone {
+  padding: 20px;
+  border: 1px dashed black;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.dropzone.available {
+  background: #eee;
+  margin: 20px 5px;
+}
+
+.dropzone.active {
+  background: #ddd;
+  margin: 20px 0px;
+  height: 120px;
+}

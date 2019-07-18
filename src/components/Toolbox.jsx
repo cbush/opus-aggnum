@@ -1,25 +1,13 @@
 import React from "react";
-import { useDrag } from "react-dnd";
-
-function Tool({ name, type }) {
-  const [{ opacity }, dragRef] = useDrag({
-    item: { name, type },
-    collect: monitor => ({
-      opacity: monitor.isDragging() ? 0.5 : 1
-    })
-  });
-  return (
-    <div ref={dragRef} className="tool" style={{ opacity }}>
-      {name}
-    </div>
-  );
-}
+import uuidv1 from "uuid/v1";
+import { Tool } from "./Tool";
 
 export function Toolbox({ toolsSpec }) {
   const tools = [];
   Object.keys(toolsSpec).forEach(name => {
     for (let i = 0; i < toolsSpec[name]; ++i) {
       tools.push({
+        id: uuidv1(),
         name,
         type: "stage"
       });
