@@ -23,8 +23,12 @@ export function StageDropzone(props) {
     className.push("available");
   }
   return (
-    <div ref={drop} className={`${className.join(" ")}`}>
-      {isActive ? "Release to drop" : "Drag a box here"}
-    </div>
+    <>
+      {canDrop ? (
+        <div ref={drop} className={`${className.join(" ")}`}>
+          {isActive ? "Release to drop" : "Drag a stage here"}
+        </div>
+      ) : null}
+    </>
   );
 }

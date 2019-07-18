@@ -77,11 +77,15 @@ export const Stage = withFlow(props => {
         <Form {...form}>
           <FormMessage {...form} name="operator" />
           <FormLabel {...form} name="argument">
-            Argument
+            Argument JSON
           </FormLabel>
-          <FormInput {...form} name="argument" placeholder="Argument" />
+          <FormInput
+            {...form}
+            name="argument"
+            placeholder={`{shape: "triangle"}`}
+          />
           <FormMessage {...form} name="argument" />
-          <FormSubmitButton {...form}>></FormSubmitButton>
+          <FormSubmitButton {...form}>Update</FormSubmitButton>
         </Form>
       </div>
       <Button className="deleter" onClick={onRequestDelete}>

@@ -65,10 +65,13 @@ export function Game({ level }) {
             expected={expectedOutput}
           />
           <>
-            <DialogDisclosure disabled={!resultEqualsExpected} {...dialog}>
+            <p>
               {resultEqualsExpected
-                ? "Result === expected"
-                : "Result does not match expected"}
+                ? "Yay! Your results match the expected output. Click Submit to continue."
+                : "Your results do not match the expected output. Keep configuring your pipeline to continue."}
+            </p>
+            <DialogDisclosure disabled={!resultEqualsExpected} {...dialog}>
+              Submit
             </DialogDisclosure>
             <DialogBackdrop {...dialog} />
             <Dialog {...dialog}>Success!</Dialog>

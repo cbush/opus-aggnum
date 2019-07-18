@@ -7,9 +7,15 @@ export const Collection = withFlow(({ documents, name, className }) => {
     <div className={`collection ${className}`}>
       {name != null ? <label>{name}</label> : null}
       <div className="documents">
-        {documents.map((document, index) => (
-          <Document key={index} document={document} />
-        ))}
+        {documents.length === 0 ? (
+          <p>
+            <i>(Nothing yet)</i>
+          </p>
+        ) : (
+          documents.map((document, index) => (
+            <Document key={index} document={document} />
+          ))
+        )}
       </div>
     </div>
   );

@@ -24,9 +24,8 @@ export function Pipeline({ input, stages, setStages, releaseTool }) {
       {stages.map((stage, index) => {
         const stageResults = results[index];
         return (
-          <>
+          <React.Fragment key={stage.id}>
             <Stage
-              key={stage.id}
               input={inputs[index]}
               onRequestDelete={() => {
                 const newStages = [...stages];
@@ -52,8 +51,11 @@ export function Pipeline({ input, stages, setStages, releaseTool }) {
               }
               {...stage}
             />
-            {stageResults ? <Result input={stageResults} /> : null}
-          </>
+            {stageResults && index !== stages.length - 1 ? (
+              <Result input={stageResults} />
+            ) : null}
+            <div className="arrowDown" />
+          </React.Fragment>
         );
       })}
       <StageDropzone

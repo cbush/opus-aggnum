@@ -33,6 +33,14 @@ function App() {
   return (
     <div className="App">
       <Provider unstable_system={system}>
+        <div className="welcome">
+          <h1>Opus Aggnum</h1>
+          <p>
+            Drag and drop from the toolbox on the right side to assemble the
+            aggregation pipeline that will transform this input collection into
+            the expected collection below.
+          </p>
+        </div>
         <DndProvider backend={HTML5Backend}>
           <Game level={EXAMPLE_LEVEL} />
         </DndProvider>

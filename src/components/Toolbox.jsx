@@ -4,7 +4,7 @@ import { Tool } from "./Tool";
 export function Toolbox({ tools, setTools }) {
   return (
     <div className="toolbox">
-      <label>TOOLBOX</label>
+      <label>STAGES TOOLBOX</label>
       <div className="tray">
         {tools.map((tool, index) => (
           <Tool

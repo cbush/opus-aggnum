@@ -5,7 +5,7 @@ export function Result({ input, expected }) {
   return (
     <div className="result">
       {Array.isArray(input) ? (
-        <Collection documents={input} />
+        <Collection name="Results" documents={input} />
       ) : (
         <Document document={input} />
       )}

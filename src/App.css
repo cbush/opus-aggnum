@@ -10,8 +10,10 @@
   flex: 1;
 }
 
-.pipelineControls {
-  margin-bottom: 20px;
+.pipeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .collection {
@@ -31,17 +33,25 @@
 
 .document {
   flex-basis: 200px;
+  display: flex;
+  flex-direction: column;
   margin: 0px 10px 10px 0px;
   padding: 10px;
   border: 1px solid black;
   box-shadow: 5px 5px #888;
-  background: rgba(255, 255, 255, 0.8)
+  background:#eee;
+}
+
+.document > label {
+  color: #666;
+  font-family: Courier, Monaco, monospace;
+  flex: 1;
+  text-align: center;
 }
 
 .result {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .stage {
@@ -86,7 +96,6 @@
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   border-top: 60px solid #aaa;
-  margin-bottom: 20px;
 }
 
 form {
@@ -107,6 +116,7 @@ form {
   padding-right: 200px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .toolbox {
@@ -122,6 +132,19 @@ form {
   display: flex;
   border: 1px solid black;
   flex-direction: column;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  margin: 0px;
+}
+
+.welcome p {
+  width: 60%;
 }
 
 .toolbox .tray {
