@@ -17,7 +17,7 @@ import { Toolbox } from "./Toolbox";
 
 export function Game({ level }) {
   const [stages, setStages] = useState([]);
-  const { input, expectedOutput } = level;
+  const { input, expectedOutput, flavor } = level;
   const [tools, setTools] = useState(
     (function() {
       const tools = [];
@@ -25,7 +25,7 @@ export function Game({ level }) {
         for (let i = 0; i < level.tools[name]; ++i) {
           tools.push({
             id: uuidv1(),
-            name,
+            name: `$${name}`,
             type: "stage"
           });
         }
@@ -47,6 +47,10 @@ export function Game({ level }) {
       <Flipper flipKey={stages} spring="wobbly">
         <Flipped flipId="viewport">
           <div className="viewport">
+            <div className="flavor">
+              <label>Client says...</label>
+              <p>"{flavor}"</p>
+            </div>
             <div className="section">
               <InputCollections input={input} />
             </div>

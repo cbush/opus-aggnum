@@ -43,6 +43,11 @@
   background:#eee;
 }
 
+.levelSelect {
+  max-width: 600px;
+  margin-bottom: 20px;
+}
+
 .document p {
   margin: 0px;
 }
@@ -52,7 +57,19 @@
   border: 1px solid black;
 }
 
-.document > label, .collection > label {
+.flavor {
+  border-radius: 20px;
+  padding: 20px;
+  background: #ffd;
+  box-shadow: 5px 5px #888;
+  margin-bottom: 20px;
+}
+
+.flavor p {
+  font-size: 18pt;
+}
+
+.document > label, .collection > label, .flavor > label  {
   text-transform: uppercase;
   color: #666;
   font-family: Courier, Monaco, monospace;

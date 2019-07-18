@@ -1,35 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
+import Select from "react-select";
 import { Game } from "./Game";
 import { Provider } from "reakit";
 import * as system from "reakit-system-bootstrap";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DndProvider } from "react-dnd";
-const EXAMPLE_LEVEL = {
-  name: "Example Level",
-  input: [
-    {
-      shape: "square",
-      color: "blue"
-    },
-    {
-      shape: "triangle",
-      color: "green"
-    }
-  ],
-  tools: {
-    $match: 3,
-    $group: 1
-  },
-  expectedOutput: [
-    {
-      shape: "triangle",
-      color: "green"
-    }
-  ]
-};
+import { withStitch } from "./withStitch";
 
-function App() {
+function App({ levels }) {
+  const [selectedLevel, setSelectedLevel] = useState(null);
+  const level = selectedLevel && levels ? levels[selectedLevel.value] : null;
   return (
     <div className="App">
       <Provider unstable_system={system}>
@@ -40,13 +21,30 @@ function App() {
             aggregation pipeline that will transform this input collection into
             the expected collection below.
           </p>
+          {levels == null ? (
+            <p>Loading...</p>
+          ) : (
+            <div className="levelSelect">
+              <label>Level select</label>
+              <Select
+                options={levels.map((level, index) => ({
+                  value: index,
+                  label: level.name
+                }))}
+                value={selectedLevel}
+                onChange={option => setSelectedLevel(option)}
+              />
+            </div>
+          )}
         </div>
-        <DndProvider backend={HTML5Backend}>
-          <Game level={EXAMPLE_LEVEL} />
-        </DndProvider>
+        {level ? (
+          <DndProvider backend={HTML5Backend}>
+            <Game key={level.index} level={level} />
+          </DndProvider>
+        ) : null}
       </Provider>
     </div>
   );
 }
 
-export default App;
+export default withStitch(App);
