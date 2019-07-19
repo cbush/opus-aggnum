@@ -1,4 +1,24 @@
+# Opus Aggnum
+
+_An unofficial MongoDB aggregation pipeline learning, machine building game_
+
+Please note: This is a work in progress, proof of concept, silly thing that may not go anywhere.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## About
+
+This game uses [mingo](https://github.com/kofrasa/mingo) to run queries against JavaScript arrays in the browser.
+
+Level data is accessed through [Stitch](https://docs.mongodb.com/stitch/).
+
+## How to play
+
+The game is split into levels. Each level has an input collection, an expected output, and a set of available tools which are [pipeline stages](https://docs.mongodb.com/manual/reference/operator/aggregation-pipeline/). Your job is to assemble and configure the stages so that your output matches the expectation of the level.
+
+---
+
+Standard create-react-app README build/run instructions below!
 
 ## Available Scripts
 
