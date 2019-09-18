@@ -55,14 +55,14 @@ export function Pipeline({ input, stages, setStages, releaseTool }) {
             />
             {stageResults && index !== stages.length - 1 ? (
               <>
-                <div className="arrowRight" />
+                <div className="pipelineImage" />
                 <Result
                   name="Output from Previous Stage"
                   input={stageResults}
                 />
               </>
             ) : null}
-            <div className="arrowRight" />
+            <div className="pipelineImage" />
           </React.Fragment>
         );
       })}

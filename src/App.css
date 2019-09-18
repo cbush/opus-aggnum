@@ -127,6 +127,11 @@
   border-left: 60px solid #aaa;
 }
 
+.pipelineImage {	
+  content:url('pipeline.png');
+  padding: 0;
+}
+
 form {
   flex: 1;
 }
