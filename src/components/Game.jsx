@@ -54,7 +54,7 @@ export function Game({ level }) {
             <div className="section">
               <InputCollections input={input} />
             </div>
-            <div className="arrowDown" />
+            <div className="arrowRight" />
             <Pipeline
               input={input}
               stages={stages}

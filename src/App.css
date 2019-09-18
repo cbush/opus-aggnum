@@ -119,12 +119,12 @@
   }
 }
 
-.arrowDown {
+.arrowRight {
   width: 0;
   height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-top: 60px solid #aaa;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 60px solid #aaa;
 }
 
 form {
