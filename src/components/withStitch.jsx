@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Stitch,
   RemoteMongoClient,
@@ -12,33 +12,27 @@ const db = client
   .db("pipeline");
 
 export function withStitch(Component) {
-  return class extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        user: null,
-        levels: null
-      };
-    }
+  return props => {
+    const [user, setUser] = useState(null);
+    const [levels, setLevels] = useState(null);
 
-    componentDidMount() {
+    // Log in when the component mounts, then fetch the game data.
+    useEffect(() => {
       client.auth
         .loginWithCredential(new AnonymousCredential())
-        .then(user => {
-          this.setState({ user });
+        .then(setUser)
+        .then(() => {
           return db
             .collection("levels")
             .find({}, { limit: 100 })
             .asArray();
         })
-        .then(levels => this.setState({ levels }))
+        .then(setLevels)
         .catch(err => {
           console.error(err);
         });
-    }
+    }, []);
 
-    render() {
-      return <Component {...this.props} {...this.state} />;
-    }
+    return <Component {...props} user={user} levels={levels} />;
   };
 }
