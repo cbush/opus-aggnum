@@ -45,16 +45,16 @@ export function Game({ level }) {
   return (
     <>
       <Flipper flipKey={stages} spring="wobbly">
+        <div className="flavor">
+          <label>Client says...</label>
+          <p>"{flavor}"</p>
+        </div>
         <Flipped flipId="viewport">
           <div className="viewport">
-            <div className="flavor">
-              <label>Client says...</label>
-              <p>"{flavor}"</p>
-            </div>
             <div className="section">
               <InputCollections input={input} />
             </div>
-            <div className="arrowDown" />
+            <div className="arrowRight" />
             <Pipeline
               input={input}
               stages={stages}

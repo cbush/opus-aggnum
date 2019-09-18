@@ -12,7 +12,7 @@
 
 .pipeline {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
@@ -101,9 +101,9 @@
 }
 
 .working {
-  background-image: 
+  background-image:
     repeating-linear-gradient(
-      0deg, 
+      0deg,
       #afa,
       transparent 25%
     );
@@ -119,12 +119,17 @@
   }
 }
 
-.arrowDown {
-  width: 0; 
-  height: 0; 
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-top: 60px solid #aaa;
+.arrowRight {
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 60px solid #aaa;
+}
+
+.pipelineImage {	
+  content:url('pipeline.png');
+  padding: 0;
 }
 
 form {
@@ -144,23 +149,22 @@ form {
 .viewport {
   padding-right: 200px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
 }
 
 .toolbox {
-  width: 100px;
+  height: 100px;
   z-index: 10;
   background: white;
   box-shadow: 0px 0px 10px black;
   padding: 20px;
   position: fixed;
-  top: 0;
   bottom:0;
   right:0;
+  left: 0;
   display: flex;
   border: 1px solid black;
-  flex-direction: column;
 }
 
 .welcome {
@@ -177,12 +181,16 @@ h1 {
 }
 
 .toolbox .tray {
-  flex-direction: column;
+  width: 100%;
   display: flex;
+  flex-direction: row;
 }
 
 .tool {
-  flex: 1;
+  width: 75px;
+  height: 25px;
+  margin: 10px;
+  text-align: center;
   padding: 20px;
   border: 1px solid black;
   box-shadow: 1px 1px 2px black;
