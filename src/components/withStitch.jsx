@@ -5,11 +5,11 @@ import {
   AnonymousCredential
 } from "mongodb-stitch-browser-sdk";
 
-const client = Stitch.initializeDefaultAppClient("opus-aggnum-ssnjw");
+const client = Stitch.initializeDefaultAppClient("pipeline-omqsb");
 
 const db = client
   .getServiceClient(RemoteMongoClient.factory, "mongodb-atlas")
-  .db("opus-aggnum");
+  .db("pipeline");
 
 export function withStitch(Component) {
   return class extends React.Component {
